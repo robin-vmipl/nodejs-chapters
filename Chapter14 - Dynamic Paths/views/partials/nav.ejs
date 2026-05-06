@@ -4,42 +4,42 @@
       <li>
         <a
           href="/"
-          class="<% if (currentPage === 'index') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
+          class="<%= currentPage === 'index' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >airbnb</a
         >
       </li>
       <li>
         <a
           href="/homes"
-          class="<% if (currentPage === 'homes') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
-          >Homes List</a
+          class="<%= currentPage === 'Home' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
+          >Homes-List</a
         >
       </li>
       <li>
         <a
           href="/favourites"
-          class="<% if (currentPage === 'favourites') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
+          class="<%= currentPage === 'favourites' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >Favourites</a
         >
       </li>
       <li>
         <a
           href="/bookings"
-          class="<% if (currentPage === 'bookings') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
+          class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >Bookings</a
         >
       </li>
       <li>
         <a
           href="/host/host-home-list"
-          class="<% if (currentPage === 'host-homes') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
+          class="<%= currentPage === 'host-homes' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >Host Homes</a
         >
       </li>
       <li>
         <a
           href="/host/add-home"
-          class="<% if (currentPage === 'addHome') { %>bg-red-400<% } else { %>hover:bg-red-400<% } %> py-2 px-4 rounded transition duration-300"
+          class="<%= currentPage === 'addHome' ? 'bg-red-400' : 'hover:bg-red-400' %> py-2 px-4 rounded transition duration-300"
           >Add Home</a
         >
       </li>

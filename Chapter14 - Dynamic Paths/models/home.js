@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = require("../utils/pathUtils"); //local module
+const Favourite = require("./favourite");
 const homeDataPath = path.join(rootDir, "data", "homes.json");
 
 let registeredHomes = [];
@@ -17,15 +18,20 @@ module.exports = class Home {
   }
 
   save() {
-    this.id = Math.random().toString(); // Generate a unique ID for the home
     Home.fetchAll((registeredHomes) => {
-      registeredHomes.push(this);
-      fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (err) => {
-        if (err) {
-          console.error("Error saving home data:", err);
-        } else {
-          console.log("Home data saved successfully.");
-        }
+      if (this.id) {
+        // edit home case
+        registeredHomes = registeredHomes.map((home) =>
+          home.id === this.id ? this : home,
+        );
+      } else {
+        // add home case
+        this.id = Math.random().toString();
+        registeredHomes.push(this);
+      }
+
+      fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
+        console.log("File Writing Concluded", error);
       });
     });
   }
@@ -44,6 +50,15 @@ module.exports = class Home {
     this.fetchAll((registeredHomes) => {
       const home = registeredHomes.find((home) => home.id === homeId);
       callback(home);
+    });
+  }
+
+  static deleteById(homeId, callback) {
+    this.fetchAll((homes) => {
+      homes = homes.filter((home) => home.id !== homeId);
+      fs.writeFile(homeDataPath, JSON.stringify(homes), (error) => {
+        Favourite.deleteById(homeId, callback);
+      });
     });
   }
 };
